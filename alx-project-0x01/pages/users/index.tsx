@@ -4,19 +4,19 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import {UserProps} from '@/interfaces';
 import UserCard from '@/components/common/UserCard';
+import { useState } from "react";
 
-const Users: React.FC<UserProps> = ({posts}) => {
+const Users: React.FC<UserProps> = ({users}: any) => {
+    const [posts ] = useState<UserProps[]>(users);
   return (
     <>
       <Header />
       <main className="max-w-4xl mx-auto px-4 py-8">
         <h1 className="text-2xl font-bold mb-6">Users</h1>
-        <div className="grid grid-cols-3 gap-2 ">
-          {
-            posts?.map(({ id, name, username, email, phone, website,address, company  }: UserProps) => (
-              <UserCard name={name} username={username} email={email} phone={phone} website={website} address={address} company={company} id={id} />
-            ))
-          }
+        <div className="grid grid-cols-3 gap-4">
+          {posts.map((user: UserProps, index: number) => (
+            <UserCard key={index} {...user} />
+          ))}
         </div>
       </main>
       <Footer />
@@ -26,11 +26,11 @@ const Users: React.FC<UserProps> = ({posts}) => {
 
 export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/users")
-  const posts = await response.json()
+  const users = await response.json()
 
   return {
     props: {
-      posts
+      users
     }
   }
 }
