@@ -1,14 +1,17 @@
-const PostCard: React.FC = () => {
+import React from 'react';
+
+type PostCardProps = {
+  title: string;
+  body: string;
+  author?: string;
+};
+
+const PostCard: React.FC<PostCardProps> = ({ title, body, author }) => {
   return (
-    <div className="max-w-xl mx-auto my-6 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-      <div className="mb-4">
-        <h2 className="text-2xl font-semibold text-gray-800">Title</h2>
-      </div>
-      <p className="text-gray-600">Body</p>
-      <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
-        <span>User ID: UserID</span>
-        <span>Post ID: ID</span>
-      </div>
+    <div className="bg-white border rounded-lg shadow p-4 hover:shadow-md transition">
+      <h3 className="text-lg font-bold text-gray-800 mb-2">{title}</h3>
+      <p className="text-gray-600 mb-3">{body}</p>
+      {author && <p className="text-sm text-gray-500">By {author}</p>}
     </div>
   );
 };
