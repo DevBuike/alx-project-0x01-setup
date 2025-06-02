@@ -23,8 +23,8 @@ export interface UserProps {
     phone:    string;
     website:  string;
     company:  {
-        name:        string;
-        catchPhrase: string;
-        bs:          string;
-    };
+      name:        string;
+      catchPhrase: string;
+      bs:          string;
+  };
 }
