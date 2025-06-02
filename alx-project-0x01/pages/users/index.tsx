@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 import {UserProps} from '@/interfaces';
 import UserCard from '@/components/common/UserCard';
 
-const UsersPage: React.FC<UserProps> = ({users}) => {
+const Users: React.FC<UserProps> = ({posts}) => {
   return (
     <>
       <Header />
@@ -13,7 +13,7 @@ const UsersPage: React.FC<UserProps> = ({users}) => {
         <h1 className="text-2xl font-bold mb-6">Users</h1>
         <div className="grid grid-cols-3 gap-2 ">
           {
-            users?.map(({ id, name, username, email, phone, website,address, company  }: UserProps) => (
+            posts?.map(({ id, name, username, email, phone, website,address, company  }: UserProps) => (
               <UserCard name={name} username={username} email={email} phone={phone} website={website} address={address} company={company} id={id} />
             ))
           }
@@ -26,13 +26,13 @@ const UsersPage: React.FC<UserProps> = ({users}) => {
 
 export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/users")
-  const users = await response.json()
+  const posts = await response.json()
 
   return {
     props: {
-      users
+      posts
     }
   }
 }
 
-export default UsersPage;
+export default Users;
