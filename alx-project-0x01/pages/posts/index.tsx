@@ -13,7 +13,7 @@ const PostsPage: React.FC = () => {
   return (
     <>
       <Header />
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-4xl mx-auto px-4 py-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
         <h1 className="text-2xl font-bold mb-6">Posts</h1>
         <div className="space-y-4">
           {dummyPosts.map((post, index) => (
